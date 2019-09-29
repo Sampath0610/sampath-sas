@@ -26,9 +26,9 @@ class User_model extends CI_Model {
 
 	public function validate_login($username,$password)
 	{
-		$result = $this->db->select('username,name,role')
-							->get_where('users',array('username'=>$username,'password'=>$password));
-
+		//$result = $this->db->select('username,name,role')//
+						//	->get_where('users',array('username'=>$username,'password'=>$password));//
+						$result = $this->db->query("SELECT * FROM users WHERE username = '$username' and password ='$password'");
 		if ($result->num_rows()>0){
 			$userData = $result->row();
 		} else {
@@ -44,4 +44,4 @@ class User_model extends CI_Model {
 		
 		return $userData;
 	}	
-}
+}	
